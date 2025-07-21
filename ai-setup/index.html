@@ -2,61 +2,362 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Activate Your AI Coach</title>
+  <title>Activate Your Personal AI Coach</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #1e3c72, #2a5298);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      color: #333;
+    }
+    
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      background: white;
+      padding: 60px 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #4CAF50, #81C784);
+    }
+    
+    .hero h1 {
+      font-size: 2.8em;
+      font-weight: 700;
+      color: #2E7D32;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    
+    .hero p {
+      font-size: 1.3em;
+      color: #666;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .btn-primary {
+      display: inline-block;
+      background: linear-gradient(135deg, #4CAF50, #66BB6A);
       color: white;
+      padding: 20px 40px;
+      font-size: 1.2em;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(76, 175, 80, 0.4);
+      background: linear-gradient(135deg, #388E3C, #4CAF50);
+    }
+    
+    /* Benefits Section */
+    .benefits {
+      background: white;
+      padding: 50px 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+      margin-bottom: 40px;
+    }
+    
+    .benefits h2 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #2E7D32;
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
+    
+    .benefits ul {
+      list-style: none;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .benefits li {
+      font-size: 1.2em;
+      padding: 15px 0;
+      color: #555;
+      border-bottom: 1px solid #f0f0f0;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+    }
+    
+    .benefits li:last-child {
+      border-bottom: none;
+    }
+    
+    .benefits li::before {
+      content: "✅";
+      font-size: 1.3em;
+      margin-right: 15px;
+      color: #4CAF50;
+    }
+    
+    /* Steps Section */
+    .steps {
+      background: white;
+      padding: 50px 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+      margin-bottom: 40px;
+    }
+    
+    .steps h3 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #2E7D32;
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
+    
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: #f8fdf8;
+      border-radius: 15px;
+      border-left: 5px solid #4CAF50;
+    }
+    
+    .step-number {
+      background: #4CAF50;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      margin: 0;
-      text-align: center;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 0.5em;
-    }
-    p {
+      font-weight: 700;
       font-size: 1.2em;
-      margin-bottom: 1.5em;
-      max-width: 600px;
+      margin-right: 20px;
+      flex-shrink: 0;
     }
-    a {
-      background: #00ff88;
-      color: #1e3c72;
-      text-decoration: none;
-      padding: 15px 30px;
-      border-radius: 40px;
+    
+    .step-content {
+      flex: 1;
+    }
+    
+    .step-content h4 {
+      color: #2E7D32;
+      font-size: 1.3em;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    
+    .step-content p {
+      color: #666;
       font-size: 1.1em;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      margin: 10px;
-      display: inline-block;
+      line-height: 1.5;
     }
-    a:hover {
-      background: #00cc6a;
+    
+    /* Quote Section */
+    .quote {
+      background: linear-gradient(135deg, #4CAF50, #81C784);
+      color: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      margin-bottom: 40px;
+      box-shadow: 0 15px 30px rgba(76, 175, 80, 0.2);
+    }
+    
+    .quote p {
+      font-size: 1.4em;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.4;
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 30px;
+      color: #888;
+      font-size: 1em;
+    }
+    
+    .footer a {
+      color: #4CAF50;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px 15px;
+      }
+      
+      .hero {
+        padding: 40px 30px;
+      }
+      
+      .hero h1 {
+        font-size: 2.2em;
+      }
+      
+      .hero p {
+        font-size: 1.1em;
+      }
+      
+      .btn-primary {
+        padding: 18px 35px;
+        font-size: 1.1em;
+      }
+      
+      .benefits, .steps {
+        padding: 40px 30px;
+      }
+      
+      .benefits h2, .steps h3 {
+        font-size: 1.8em;
+      }
+      
+      .step-item {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .step-number {
+        margin-bottom: 15px;
+        margin-right: 0;
+      }
+    }
+    
+    /* Animations */
+    .hero {
+      animation: fadeInUp 0.8s ease-out;
+    }
+    
+    .benefits {
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    
+    .steps {
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+    
+    .quote {
+      animation: fadeInUp 0.8s ease-out 0.6s both;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 <body>
-  <h1>🤖 Activate Your AI Coach</h1>
-  <p>Your personal transformation assistant is ready to guide you!</p>
-  <p>Follow these simple steps:</p>
-  <p>1. Open the tracker below<br>
-     2. Get your OpenAI API key<br>
-     3. Follow setup instructions<br>
-     4. Start transforming!</p>
-  
-  <a href="https://docs.google.com/spreadsheets/d/1ae0qGIQ9FSq0fixs0Y5T-ktWvZTXJDq0qTD20sr4HEg/edit?gid=0#gid=0" target="_blank">📊 Open AI Tracker</a>
-  
-  <a href="https://platform.openai.com/api-keys" target="_blank">🔑 Get API Key</a>
-  
-  <p style="font-size: 0.9em; margin-top: 30px;">Need help? Check the setup guide in your package.</p>
+  <div class="container">
+    <!-- Hero Section -->
+    <div class="hero">
+      <h1>🚀 Activate Your Personal AI Coach</h1>
+      <p>Start your 365-day transformation journey today with the Triad Tracker and your own AI Assistant.</p>
+      <a href="https://docs.google.com/spreadsheets/d/1ae0qGIQ9FSq0fixs0Y5T-ktWvZTXJDq0qTD20sr4HEg/copy" 
+         class="btn-primary" 
+         target="_blank">
+         ✅ Get My Tracker Now
+      </a>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="benefits">
+      <h2>What You'll Get</h2>
+      <ul>
+        <li>Personalized daily feedback from AI</li>
+        <li>Track progress in 3 minutes per day</li>
+        <li>Instant analysis based on the Triad system</li>
+        <li>Weekly reports and breakthrough strategies</li>
+        <li>Habit optimization and motivation boosts</li>
+      </ul>
+    </div>
+
+    <!-- Steps Section -->
+    <div class="steps">
+      <h3>How It Works</h3>
+      
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>Get Your Personal Copy</h4>
+          <p>Click the button to automatically create your own copy of the Triad Tracker. It's yours forever.</p>
+        </div>
+      </div>
+      
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>Fill Today's Score</h4>
+          <p>Rate your Quantum Vision, Balance Matrix, and Micro-Revolution scores. Takes less than 3 minutes.</p>
+        </div>
+      </div>
+      
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>Get AI Insights</h4>
+          <p>Read your personalized AI-generated coaching. Reflect. Adjust. Grow. Transform.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quote Section -->
+    <div class="quote">
+      <p>"One day at a time, one decision at a time – this is how transformation happens."</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Need help? Contact: <a href="mailto:leo84@abv.bg">leo84@abv.bg</a> | 
+         <a href="https://triadcoach.com/">← Back to Home</a></p>
+    </div>
+  </div>
 </body>
 </html>
