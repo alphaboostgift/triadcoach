@@ -2,64 +2,403 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Track Your Progress</title>
+  <title>Daily Tracker - Triad Coach</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #1e3c72, #2a5298);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: #333;
+    }
+    
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      background: white;
+      padding: 60px 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #2196F3, #1976D2);
+    }
+    
+    .hero h1 {
+      font-size: 2.8em;
+      font-weight: 700;
+      color: #1565C0;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    
+    .hero p {
+      font-size: 1.3em;
+      color: #666;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .btn-primary {
+      display: inline-block;
+      background: linear-gradient(135deg, #2196F3, #1976D2);
       color: white;
+      padding: 20px 40px;
+      font-size: 1.2em;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(33, 150, 243, 0.3);
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(33, 150, 243, 0.4);
+      background: linear-gradient(135deg, #1976D2, #1565C0);
+    }
+    
+    /* Benefits Section */
+    .benefits {
+      background: white;
+      padding: 50px 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+      margin-bottom: 40px;
+    }
+    
+    .benefits h2 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #1565C0;
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
+    
+    .benefits ul {
+      list-style: none;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .benefits li {
+      font-size: 1.2em;
+      padding: 15px 0;
+      color: #555;
+      border-bottom: 1px solid #f0f0f0;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+    }
+    
+    .benefits li:last-child {
+      border-bottom: none;
+    }
+    
+    .benefits li::before {
+      content: "🎯";
+      font-size: 1.3em;
+      margin-right: 15px;
+      color: #2196F3;
+    }
+    
+    /* Steps Section */
+    .steps {
+      background: white;
+      padding: 50px 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+      margin-bottom: 40px;
+    }
+    
+    .steps h3 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #1565C0;
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
+    
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: #f8fbff;
+      border-radius: 15px;
+      border-left: 5px solid #2196F3;
+    }
+    
+    .step-number {
+      background: #2196F3;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      margin: 0;
-      text-align: center;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 0.5em;
-    }
-    p {
+      font-weight: 700;
       font-size: 1.2em;
-      margin-bottom: 1.5em;
-      max-width: 600px;
+      margin-right: 20px;
+      flex-shrink: 0;
     }
-    a {
-      background: #00ff88;
-      color: #1e3c72;
-      text-decoration: none;
-      padding: 15px 30px;
-      border-radius: 40px;
+    
+    .step-content {
+      flex: 1;
+    }
+    
+    .step-content h4 {
+      color: #1565C0;
+      font-size: 1.3em;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    
+    .step-content p {
+      color: #666;
       font-size: 1.1em;
-      font-weight: bold;
+      line-height: 1.5;
+    }
+    
+    /* Calendar Section */
+    .calendar {
+      background: linear-gradient(135deg, #2196F3, #1976D2);
+      color: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      margin-bottom: 40px;
+      box-shadow: 0 15px 30px rgba(33, 150, 243, 0.2);
+    }
+    
+    .calendar h3 {
+      font-size: 1.8em;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    
+    .calendar p {
+      font-size: 1.2em;
+      margin-bottom: 25px;
+    }
+    
+    .btn-secondary {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 25px;
+      border: 2px solid rgba(255,255,255,0.3);
       transition: all 0.3s ease;
     }
-    a:hover {
-      background: #00cc6a;
+    
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.3);
+      border-color: rgba(255,255,255,0.5);
+      transform: translateY(-2px);
     }
-    .pillars {
-      margin: 20px 0;
-      font-size: 1.1em;
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 30px;
+      color: rgba(255,255,255,0.8);
+      font-size: 1em;
+    }
+    
+    .footer a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px 15px;
+      }
+      
+      .hero {
+        padding: 40px 30px;
+      }
+      
+      .hero h1 {
+        font-size: 2.2em;
+      }
+      
+      .hero p {
+        font-size: 1.1em;
+      }
+      
+      .btn-primary {
+        padding: 18px 35px;
+        font-size: 1.1em;
+      }
+      
+      .benefits, .steps {
+        padding: 40px 30px;
+      }
+      
+      .benefits h2, .steps h3 {
+        font-size: 1.8em;
+      }
+      
+      .step-item {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .step-number {
+        margin-bottom: 15px;
+        margin-right: 0;
+      }
+      
+      .calendar {
+        padding: 30px 25px;
+      }
+    }
+    
+    /* Animations */
+    .hero {
+      animation: fadeInUp 0.8s ease-out;
+    }
+    
+    .benefits {
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    
+    .steps {
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+    
+    .calendar {
+      animation: fadeInUp 0.8s ease-out 0.6s both;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 <body>
-  <h1>📈 Track Your Progress</h1>
-  <p>Monitor your transformation with our smart tracking system!</p>
-  
-  <div class="pillars">
-    <p>🎯 <strong>Quantum Vision</strong> - Goal Clarity</p>
-    <p>⚖️ <strong>Balance Matrix</strong> - Energy & Priorities</p>
-    <p>🔄 <strong>Micro-Revolution</strong> - Daily Habits</p>
+  <div class="container">
+    <!-- Hero Section -->
+    <div class="hero">
+      <h1>🧭 Your Daily Transformation Dashboard</h1>
+      <p>You're one step away from tracking progress like a pro. Let's transform this day.</p>
+      <a href="https://docs.google.com/spreadsheets/d/1ae0qGIQ9FSq0fixs0Y5T-ktWvZTXJDq0qTD20sr4HEg/copy?hl=en" 
+         class="btn-primary" 
+         target="_blank">
+         ✅ Activate Daily Tracker
+      </a>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="benefits">
+      <h2>Why Track Daily?</h2>
+      <ul>
+        <li>Build consistent habits with just 3 minutes</li>
+        <li>See progress across Vision, Balance, Micro</li>
+        <li>Get instant insights from AI Coach</li>
+        <li>Visualize your transformation journey</li>
+        <li>Stay aligned with your goals every day</li>
+      </ul>
+    </div>
+
+    <!-- Steps Section -->
+    <div class="steps">
+      <h3>How to Use It</h3>
+      
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>Get Your Tracker</h4>
+          <p>Click the button above to create your personal copy of the daily tracker.</p>
+        </div>
+      </div>
+      
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>Daily Check-in</h4>
+          <p>Open your sheet every morning and rate your 3 core areas in under 3 minutes.</p>
+        </div>
+      </div>
+      
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>Get AI Insights</h4>
+          <p>Read your personalized coaching and let AI guide your daily actions.</p>
+        </div>
+      </div>
+      
+      <div class="step-item">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h4>Build Momentum</h4>
+          <p>Repeat daily and watch your transformation compound over time.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calendar Section -->
+    <div class="calendar">
+      <h3>⏰ Never Miss a Day</h3>
+      <p>Set up a daily reminder to build your tracking habit</p>
+      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Daily%20Transformation%20Check-in&details=Time%20to%20update%20my%20Triad%20Tracker%20and%20get%20AI%20coaching%20insights!&dates=20250122T090000Z/20250122T091500Z&recur=RRULE:FREQ=DAILY&sf=true&output=xml" 
+         class="btn-secondary" 
+         target="_blank">
+         📅 Add Daily Reminder
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Need help? Contact: <a href="mailto:leo84@abv.bg">leo84@abv.bg</a> | 
+         <a href="https://triadcoach.com/">← Back to Home</a></p>
+    </div>
   </div>
-  
-  <p>Track daily ratings, get AI analysis, and see your progress!</p>
-  
-  <a href="https://docs.google.com/spreadsheets/d/1ae0qGIQ9FSq0fixs0Y5T-ktWvZTXJDq0qTD20sr4HEg/edit?gid=0#gid=0" target="_blank">📊 Open Tracker</a>
-  
-  <p style="font-size: 0.9em; margin-top: 30px;">Start tracking today and see the power of measurement!</p>
 </body>
 </html>
