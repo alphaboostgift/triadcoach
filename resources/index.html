@@ -1,68 +1,401 @@
-<div class="container">
-  <!-- Hero Section -->
-  <div class="hero">
-    <h1>🔓 Your Transformation Control Center</h1>
-    <p>Access all your AI-powered tools, bonus resources, and latest updates in one place.</p>
-    <p><strong>Everything you need to master your 365-day journey.</strong></p>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Transformation Resources Hub - Triad Coach</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: #333;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      background: white;
+      padding: 60px 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+    
+    .hero h1 {
+      font-size: 2.8em;
+      font-weight: 700;
+      color: #5a67d8;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    
+    .hero p {
+      font-size: 1.3em;
+      color: #666;
+      margin-bottom: 20px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* Module Cards */
+    .module {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+      border-left: 5px solid;
+      transition: transform 0.3s ease;
+    }
+    
+    .module:hover {
+      transform: translateY(-5px);
+    }
+    
+    .module.tracker {
+      border-left-color: #4CAF50;
+    }
+    
+    .module.journal {
+      border-left-color: #2196F3;
+    }
+    
+    .module.bonus {
+      border-left-color: #FF6B6B;
+    }
+    
+    .module.updates {
+      border-left-color: #9C27B0;
+    }
+    
+    .module h2 {
+      font-size: 2em;
+      margin-bottom: 15px;
+      color: #333;
+      font-weight: 600;
+    }
+    
+    .module.tracker h2 { color: #2E7D32; }
+    .module.journal h2 { color: #1565C0; }
+    .module.bonus h2 { color: #D32F2F; }
+    .module.updates h2 { color: #7B1FA2; }
+    
+    .module p {
+      font-size: 1.2em;
+      color: #666;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+    
+    .module-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #4CAF50, #45a049);
+      color: white;
+      box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(76, 175, 80, 0.4);
+    }
+    
+    .btn-secondary {
+      background: linear-gradient(135deg, #2196F3, #1976D2);
+      color: white;
+      box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+    }
+    
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(33, 150, 243, 0.4);
+    }
+    
+    .btn-tertiary {
+      background: linear-gradient(135deg, #FF6B6B, #EE5A24);
+      color: white;
+      box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+    }
+    
+    .btn-tertiary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(255, 107, 107, 0.4);
+    }
+    
+    .btn-quaternary {
+      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+      color: white;
+      box-shadow: 0 8px 20px rgba(156, 39, 176, 0.3);
+    }
+    
+    .btn-quaternary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(156, 39, 176, 0.4);
+    }
+    
+    /* Status badges */
+    .status {
+      display: inline-block;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.9em;
+      font-weight: 600;
+      margin-left: 15px;
+    }
+    
+    .status.live {
+      background: #E8F5E8;
+      color: #2E7D32;
+    }
+    
+    .status.coming-soon {
+      background: #FFF3E0;
+      color: #F57F17;
+    }
+    
+    /* Quote Section */
+    .quote {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      margin: 40px 0;
+      box-shadow: 0 15px 30px rgba(102, 126, 234, 0.2);
+    }
+    
+    .quote p {
+      font-size: 1.4em;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.4;
+      margin-bottom: 0;
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+      margin-top: 40px;
+    }
+    
+    .footer h3 {
+      color: #5a67d8;
+      margin-bottom: 15px;
+      font-size: 1.5em;
+    }
+    
+    .footer p {
+      color: #666;
+      font-size: 1.1em;
+    }
+    
+    .footer a {
+      color: #5a67d8;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px 15px;
+      }
+      
+      .hero {
+        padding: 40px 30px;
+      }
+      
+      .hero h1 {
+        font-size: 2.2em;
+      }
+      
+      .hero p {
+        font-size: 1.1em;
+      }
+      
+      .module {
+        padding: 30px 25px;
+      }
+      
+      .module h2 {
+        font-size: 1.6em;
+      }
+      
+      .module-buttons {
+        flex-direction: column;
+      }
+      
+      .btn {
+        text-align: center;
+        width: 100%;
+      }
+    }
+    
+    /* Animations */
+    .hero {
+      animation: fadeInUp 0.8s ease-out;
+    }
+    
+    .module {
+      animation: fadeInUp 0.8s ease-out;
+    }
+    
+    .module:nth-child(2) { animation-delay: 0.1s; }
+    .module:nth-child(3) { animation-delay: 0.2s; }
+    .module:nth-child(4) { animation-delay: 0.3s; }
+    .module:nth-child(5) { animation-delay: 0.4s; }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Hero Section -->
+    <div class="hero">
+      <h1>🔓 Your Transformation Control Center</h1>
+      <p>Access all your AI-powered tools, bonus resources, and latest updates in one place.</p>
+      <p><strong>Everything you need to master your 365-day journey.</strong></p>
+    </div>
 
-  <!-- Daily AI Tracker Module -->
-  <div class="module tracker">
-    <h2>🤖 Daily AI Tracker <span class="status live">LIVE</span></h2>
-    <p>Your main transformation engine. Track daily progress across the three pillars and get instant personalized AI insights to guide your journey.</p>
-    <div class="module-buttons">
-      <a href="https://docs.google.com/spreadsheets/d/1ae0qGIQ9FSq0fixs0Y5T-ktWvZTXJDq0qTD20sr4HEg/copy?hl=en" 
-         class="btn btn-primary" 
-         target="_blank">
-         📊 Copy Your Tracker
-      </a>
-      <a href="https://triadcoach.com/ai-setup/" 
-         class="btn btn-secondary">
-         🔧 Setup Guide
-      </a>
+    <!-- Daily AI Tracker Module -->
+    <div class="module tracker">
+      <h2>🤖 Daily AI Tracker <span class="status live">LIVE</span></h2>
+      <p>Your main transformation engine. Track daily progress across the three pillars and get instant personalized AI insights to guide your journey.</p>
+      <div class="module-buttons">
+        <a href="https://docs.google.com/spreadsheets/d/1ae0qGIQ9FSq0fixs0Y5T-ktWvZTXJDq0qTD20sr4HEg/copy?hl=en" 
+           class="btn btn-primary" 
+           target="_blank">
+           📊 Copy Your Tracker
+        </a>
+        <a href="https://triadcoach.com/ai-setup/" 
+           class="btn btn-secondary">
+           🔧 Setup Guide
+        </a>
+      </div>
+    </div>
+
+    <!-- Weekly Journal AI Module -->
+    <div class="module journal">
+      <h2>📔 Weekly Journal AI <span class="status live">LIVE</span></h2>
+      <p>Reflect deeply every week. Get AI coaching on your patterns, wins, and struggles. Perfect complement to your daily tracking.</p>
+      <div class="module-buttons">
+        <a href="https://docs.google.com/spreadsheets/d/1zBvuH0WfYAu09-5_W4BFtSF9HCaxLh1lEZQ5QZl7hXg/copy?hl=en" 
+           class="btn btn-primary" 
+           target="_blank">
+           📝 Copy Weekly Journal
+        </a>
+        <a href="https://triadcoach.com/tracker/" 
+           class="btn btn-secondary">
+           📖 How It Works
+        </a>
+      </div>
+    </div>
+
+    <!-- Bonus Materials Module -->
+    <div class="module bonus">
+      <h2>🎁 Bonus Materials <span class="status coming-soon">COMING SOON</span></h2>
+      <p>Motivation packs, advanced templates, transformation rituals, and exclusive content to accelerate your progress.</p>
+      <div class="module-buttons">
+        <a href="#" 
+           class="btn btn-tertiary" 
+           onclick="alert('Coming soon! We are preparing something special for you.')">
+           📦 Access Bonuses
+        </a>
+        <a href="mailto:leo84@abv.bg?subject=Bonus Materials Request" 
+           class="btn btn-secondary">
+           📧 Get Notified
+        </a>
+      </div>
+    </div>
+
+    <!-- Updates Module -->
+    <div class="module updates">
+      <h2>🔄 Updates & New Tools <span class="status live">ACTIVE</span></h2>
+      <p>Stay current with the latest features, new AI capabilities, and additional transformation tools as we expand the ecosystem.</p>
+      <div class="module-buttons">
+        <a href="https://triadcoach.com/" 
+           class="btn btn-quaternary">
+           🏠 Visit Main Site
+        </a>
+        <a href="mailto:leo84@abv.bg?subject=Feature Request" 
+           class="btn btn-secondary">
+           💡 Suggest Feature
+        </a>
+      </div>
+    </div>
+
+    <!-- Quote Section -->
+    <div class="quote">
+      <p>"The tools are ready. The AI is waiting. Your transformation begins with the next click."</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <h3>💬 Need Help or Support?</h3>
+      <p>Questions about setup? Want to share your success story? Technical issues?</p>
+      <p>Contact me directly: <a href="mailto:leo84@abv.bg">leo84@abv.bg</a></p>
+      <p style="margin-top: 20px;"><a href="https://triadcoach.com/">← Back to Home</a></p>
     </div>
   </div>
-
-  <!-- Weekly Journal AI Module -->
-  <div class="module journal">
-    <h2>📔 Weekly Journal AI <span class="status live">LIVE</span></h2>
-    <p>Reflect deeply every week. Get AI coaching on your patterns, wins, and struggles. Perfect complement to your daily tracking.</p>
-    <div class="module-buttons">
-      <a href="https://docs.google.com/spreadsheets/d/1zBvuH0WfYAu09-5_W4BFtSF9HCaxLh1lEZQ5QZl7hXg/copy?hl=en" 
-         class="btn btn-primary" 
-         target="_blank">
-         📝 Copy Weekly Journal
-      </a>
-      <a href="https://triadcoach.com/tracker/" 
-         class="btn btn-secondary">
-         📖 How It Works
-      </a>
-    </div>
-  </div>
-
-  <!-- Suggest Feature Module -->
-  <div class="module bonus">
-    <h2>💡 Suggest a Feature <span class="status live">ACTIVE</span></h2>
-    <p>Have an idea to improve the Triad system? Let us know what tools or features you'd love to see next.</p>
-    <div class="module-buttons">
-      <a href="https://forms.gle/YOUR_FORM_LINK" 
-         class="btn btn-tertiary" 
-         target="_blank">
-         💬 Submit Suggestion
-      </a>
-    </div>
-  </div>
-
-  <!-- Quote Section -->
-  <div class="quote">
-    <p>"The tools are ready. The AI is waiting. Your transformation begins with the next click."</p>
-  </div>
-
-  <!-- Footer -->
-  <div class="footer">
-    <h3>💬 Need Help or Support?</h3>
-    <p>Questions about setup? Want to share your success story? Technical issues?</p>
-    <p>Contact me directly: <a href="mailto:leo84@abv.bg">leo84@abv.bg</a></p>
-    <p style="margin-top: 20px;"><a href="https://triadcoach.com/">← Back to Home</a></p>
-  </div>
-</div>
+</body>
+</html>
